@@ -12,6 +12,25 @@ Where:
 ## Sliding Block Demo
 In this example, we have a sliding block that we want to move to a certain position. We can control the position of the block by applying a force to it. The output of the controller is the force that is applied to the block. The force depends on the error between the current position and the desired position as well as the derivative of the error (which is -1 * the derivative of the current position). The derivative term helps to prevent overshoot and oscillation.
 
+```javascript
+function pdController() {
+    // calculate the error (desired position - actual position)
+    const error = targetX - block.pos.x;
+
+    // the derivative of the error is -1 * the blocks velocity
+    // because error = targetX - block.pos.x
+    const errorDerivative = -block.vel.x;
+
+    // calculate the control signal
+    const proportionalGain = 0.005;
+    const derivativeGain = 0.09;
+    const u = proportionalGain * error + derivativeGain * errorDerivative;
+
+    // apply the control signal to the block as a force in the x direction
+    block.netForce.x += u;
+}
+```
+
 ### [View Demo](./Sliding-Block.html)
 
 ## Sliding Block with Moving Target Demo

@@ -70,13 +70,17 @@
 
 
         function pdController() {
-            // calculate the error
+            // calculate the error (desired position - actual position)
             const error = targetX - block.pos.x;
+
+            // the derivative of the error is -1 * the blocks velocity
+            // because error = targetX - block.pos.x
+            const errorDerivative = -block.vel.x;
 
             // calculate the control signal
             const proportionalGain = 0.005;
             const derivativeGain = 0.09;
-            const u = proportionalGain * error - derivativeGain * block.vel.x;
+            const u = proportionalGain * error + derivativeGain * errorDerivative;
 
             // apply the control signal to the block as a force
             block.netForce.x += u;

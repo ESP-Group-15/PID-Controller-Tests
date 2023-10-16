@@ -16,4 +16,29 @@ In this example, we have a sliding block that we want to move to a certain posit
 
 The derivative term helps to prevent overshoot and oscillation. The integral term adds up all the error over time and prevents the block from lagging behind the target position for too long.
 
+```javascript
+function pidController() {
+    // calculate the error (desired position - actual position)
+    const error = targetX - block.pos.x;
+
+    // the derivative of the error is -1 * the blocks velocity
+    // because error = targetX - block.pos.x
+    const errorDerivative = -block.vel.x;
+
+    // integrate the error over time
+    errorIntegral += error;
+
+    // define the gain constants
+    const proportionalGain = 0.004;
+    const derivativeGain = 0.08;
+    const integralGain = 0.00003;
+
+    // calculate the control signal
+    const u = proportionalGain * error + integralGain * errorIntegral + derivativeGain * errorDerivative;
+
+    // apply the control signal to the block as a force
+    block.netForce.x += u;
+}
+```
+
 ### [View Demo](./Sliding-Block-Moving-Target.html)
