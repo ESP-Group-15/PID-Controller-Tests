@@ -79,6 +79,10 @@
             // calculate the error (desired position - actual position)
             const error = targetX - block.pos.x;
 
+            // the derivative of the error is -1 * the blocks velocity
+            // because error = targetX - block.pos.x
+            const errorDerivative = -block.vel.x;
+
             // integrate the error over time
             errorIntegral += error;
 
@@ -86,8 +90,7 @@
             const proportionalGain = 0.004;
             const derivativeGain = 0.08;
             const integralGain = 0.00003;
-            const u = proportionalGain * error  + integralGain * errorIntegral
-             - derivativeGain * block.vel.x;
+            const u = proportionalGain * error + integralGain * errorIntegral + derivativeGain * errorDerivative;
 
             // apply the control signal to the block as a force
             block.netForce.x += u;
