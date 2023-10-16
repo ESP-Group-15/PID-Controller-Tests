@@ -9,9 +9,7 @@ Where:
 - `Kd` is the derivative gain constant
 - `e'` is the derivative of the error (change in error / change in time)
 
-## Sliding Block Demo
-In this example, we have a sliding block that we want to move to a certain position. We can control the position of the block by applying a force to it. The output of the controller is the force that is applied to the block. The force depends on the error between the current position and the desired position as well as the derivative of the error (which is -1 * the derivative of the current position). The derivative term helps to prevent overshoot and oscillation.
-
+## Implementation
 ```javascript
 function pdController() {
     // calculate the error (desired position - actual position)
@@ -30,6 +28,9 @@ function pdController() {
     block.netForce.x += u;
 }
 ```
+
+## Sliding Block Demo
+In this example, we have a sliding block that we want to move to a certain position. We can control the position of the block by applying a force to it. The output of the controller is the force that is applied to the block. The force depends on the error between the current position and the desired position as well as the derivative of the error (which is -1 * the derivative of the current position). The derivative term helps to prevent overshoot and oscillation.
 
 ### [View Demo](./Sliding-Block.html)
 
