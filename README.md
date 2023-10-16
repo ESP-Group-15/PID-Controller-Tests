@@ -2,11 +2,11 @@
 This repository contains some P, PD, and PID controller examples written in JavaScript along with their corresponding documentation.
 
 
-(## P Controllers)[./P-Controllers]
+## [P Controllers](./P-Controllers)
 
-(## PD Controllers)[./PD-Controllers]
+## [PD Controllers](./PD-Controllers)
 
-(## PID Controllers)[./PID-Controllers]
+## [PID Controllers](./PID-Controllers)
 
 
 
