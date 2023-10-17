@@ -27,11 +27,22 @@
             background-color: black;
             padding: 10px;
         }
+        #restart {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 20px;
+            font-family: sans-serif;
+            color: white;
+            background-color: black;
+            padding: 10px;
+        }
     </style>
 </head>
 
 <body>
     <div id="disterror"></div>
+    <button id="restart">Restart</button>
     <canvas id="canvas"></canvas>
     <script>
 
@@ -147,7 +158,16 @@
         // start the simulation
         simulationStep();
 
+        document.getElementById('restart').addEventListener('click', () => {
+            block.pos.x = 0;
+            block.pos.y = canvas.height - 100;
+            block.vel.x = 0;
+            block.vel.y = 0;
 
+            // reset the target position
+            targetX = canvas.width / 2;
+            targetMoveDirection = 1;
+        });
 
 
     </script>
